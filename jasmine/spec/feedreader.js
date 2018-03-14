@@ -24,6 +24,7 @@ $(function() {
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
+            // ANSWER: the test fails if allFeeds is empty
         });
 
 
@@ -32,7 +33,7 @@ $(function() {
          * and that the URL is not empty.
          */
 
-         it('have all URL defined', function() {
+         it('have all URL defined and they are not empty', function() {
              allFeeds.forEach(element => {
                  expect(element.url).toBeDefined();
                  expect(element.url.length).not.toBe(0);
@@ -44,6 +45,13 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        it('have all names defined and they are not empty', function () {
+            allFeeds.forEach(element => {
+                expect(element.name).toBeDefined();
+                expect(element.name.length).not.toBe(0);
+            });
+        });
     });
 
 
