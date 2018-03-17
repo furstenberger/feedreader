@@ -94,6 +94,25 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+    
+     describe('Initial Entries', () => {
+
+        feedList = $('.feed-list').find('a'); // get all feedList items to call loadFeed
+
+        beforeEach((done) => {
+            // loop through feedList and call loadFeed for each data-id
+            for (i = 0; i < feedList.length; i++) {
+                //pass done function as callback
+                loadFeed(parseInt(feedList[i].getAttribute('data-id')), () => { done();});   
+            }
+        });
+
+        it('should have at least one entry after loadFeed() is called', (done) => {
+            feed = $('.entry'); // collect all entries after loadFeed is properly executed asynchronously
+            expect(feed.length).toBeGreaterThan(0);
+            done();
+        });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
