@@ -120,4 +120,26 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+    describe('New Feed Selection', () => {
+
+        let firstFeed, secondFeed;
+
+        beforeEach((done) => {
+            //call loadFeed nested in one another to wait both functions to conclude. 
+            loadFeed(0, () => {
+                firstFeed = $('.feed').html();
+                loadFeed(1, () => {
+                    secondFeed = $('.feed').html();
+                    done();
+                });
+            });
+        });
+
+        it('should be different when feed is changed', (done) => {      
+            expect(firstFeed).not.toEqual(secondFeed);
+            done();
+        });
+    });
+    
 }());
